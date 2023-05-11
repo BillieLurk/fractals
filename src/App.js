@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { ReactP5Wrapper } from 'react-p5-wrapper';
+
+import Styled from 'styled-components';
+import Fractal from './Fractal';
+import React, { useRef } from 'react';
+
+const Container = Styled.div`
+width: 100%;
+height: 100vh;
+overflow: hidden;
+background-color: #000;
+`
 
 function App() {
+  const containerRef = useRef(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container ref={containerRef}>
+       <Fractal />
+
+      </Container>
+      <div style={{ height: "800px" }}>
+        TESt
+      </div>
+    </>
   );
 }
 
