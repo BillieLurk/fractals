@@ -36,13 +36,20 @@ class Effect {
     branch.moveTo(x1, y1);
     branch.lineTo(x2, y2);
 
-    
-    branch.arc(x2, y2, length * 0.1, 0, Math.PI * 2);
-
     // Save this branch for later drawing
     this.branchesToDraw.push({
       path: branch,
       lineWidth: this.maxLevel - level + 1,  // Vary the line width according to the level
+    });
+
+    // Create a new path for the arc
+    let arc = new Path2D();
+    arc.arc(x2, y2, length * 0.1, 0, Math.PI * 2);
+
+    // Save this arc for later drawing
+    this.branchesToDraw.push({
+      path: arc,
+      lineWidth: this.maxLevel - level + 1,
     });
 
     // Recursively draw the next level of branches
@@ -69,9 +76,8 @@ class Effect {
 
       }
     }
+}
 
-    
-  }
 
   drawFractal(ctx) {
     this.branchesToDraw = [];
