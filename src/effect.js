@@ -3,15 +3,15 @@ class Effect {
     this.onDrawComplete = onDrawComplete;
     this.container = container;
     this.canvas = canvas;
-    this.mirror = false;
+    this.mirror = true;
     this.length = 200;
-    this.maxLevel = 3;
+    this.maxLevel = 5;
     this.branches = 2;
     this.spread = 0.2;
-    this.scale = 0.9;
+    this.scale = 0.7;
     this.sides = 5;
     this.shadows = false;
-    this.disconnect = -2;
+    this.disconnect = 0;
 
     this.count = 0;
 
@@ -42,15 +42,7 @@ class Effect {
       lineWidth: this.maxLevel - level + 1,  // Vary the line width according to the level
     });
 
-    // Create a new path for the arc
-    let arc = new Path2D();
-    arc.arc(x2, y2, length * 0.1, 0, Math.PI * 2);
-
-    // Save this arc for later drawing
-    this.branchesToDraw.push({
-      path: arc,
-      lineWidth: this.maxLevel - level + 1,
-    });
+   
 
     // Recursively draw the next level of branches
     for (let i = 0; i < this.branches; i++) {
